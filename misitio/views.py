@@ -1,6 +1,5 @@
 from django.http import HttpResponse, Http404
-from django.template.loader import get_template
-from django.template import Context
+from django.shortcuts import render
 import datetime
 
 def hola(request):
@@ -9,9 +8,7 @@ def hola(request):
 
 def fecha_actual(request):
     ahora = datetime.datetime.now()
-    t=get_template('fecha_actual.html')
-    html=t.render(Context({'fecha_actual':ahora}))
-    return HttpResponse(html)
+    return render(request,'fecha_actual.html',{'fecha_actual':ahora})
 
 def horas_adelante(request, horas):
     try:
