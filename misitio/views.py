@@ -16,5 +16,4 @@ def horas_adelante(request, horas):
     except ValueError:
         raise Http404()
     dt= datetime.datetime.now() + datetime.timedelta(hours=horas)
-    html ="<html><body><h1>En %s horas(s), seran</h1><h3>%s</h3></body></html>" %(horas, dt)
-    return HttpResponse(html)
+    return render(request,'horas_adelante.html',{'horas_adelante':dt, 'cant_horas':horas})
